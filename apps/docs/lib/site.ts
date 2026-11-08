@@ -14,6 +14,10 @@ export function toSiteHref(href: string) {
     return href;
   }
 
+  if (siteBasePath && (href === siteBasePath || href.startsWith(`${siteBasePath}/`))) {
+    return href;
+  }
+
   if (href === '/') {
     return siteBasePath || '/';
   }

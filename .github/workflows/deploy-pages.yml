@@ -50,19 +50,7 @@ jobs:
           mkdir -p site/playground
           test -d apps/docs/out && cp -R apps/docs/out/. site/
           test -d apps/playground/dist && cp -R apps/playground/dist/. site/playground/
-          cat > site/index.html <<'EOF'
-          <!doctype html>
-          <html lang="en">
-            <head>
-              <meta charset="utf-8" />
-              <meta http-equiv="refresh" content="0; url=/stackvibe-ui/" />
-              <title>StackVibe UI</title>
-            </head>
-            <body>
-              <p>Redirecting to the <a href="/stackvibe-ui/">StackVibe docs</a>...</p>
-            </body>
-          </html>
-          EOF
+          touch site/.nojekyll
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
