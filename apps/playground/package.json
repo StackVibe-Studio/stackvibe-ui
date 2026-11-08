@@ -1,7 +1,7 @@
 {
   "name": "@stackvibe-studio/playground",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.0",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@stackvibe-studio/motion": "workspace:*",
+    "@stackvibe-studio/themes": "workspace:*",
     "@stackvibe-studio/three": "workspace:*",
     "@stackvibe-studio/ui": "workspace:*",
     "react": "^19.0.0",

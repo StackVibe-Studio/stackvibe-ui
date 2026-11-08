@@ -5,7 +5,11 @@ export type ThemeName =
   | 'soft-minimal'
   | 'neon-futuristic'
   | 'sunset-glow'
-  | 'midnight-gold';
+  | 'midnight-gold'
+  | 'cyberpunk-crimson'
+  | 'emerald-matrix'
+  | 'nordic-frost'
+  | 'tokyo-night';
 
 export type ThemeTokens = {
   background: string;
@@ -89,12 +93,75 @@ export const themePresets: Record<ThemeName, ThemeTokens> = {
     radius: '1rem',
     glow: 'rgba(251,191,36,0.26)',
   },
+  'cyberpunk-crimson': {
+    background: '#0f050d',
+    foreground: '#ffe4e6',
+    primary: '#f43f5e',
+    secondary: '#e11d48',
+    accent: '#fb7185',
+    surface: '#1f0d18',
+    radius: '0.75rem',
+    glow: 'rgba(244,63,94,0.45)',
+  },
+  'emerald-matrix': {
+    background: '#021a10',
+    foreground: '#ecfdf5',
+    primary: '#10b981',
+    secondary: '#059669',
+    accent: '#34d399',
+    surface: '#06291a',
+    radius: '1rem',
+    glow: 'rgba(16,185,129,0.38)',
+  },
+  'nordic-frost': {
+    background: '#0b132b',
+    foreground: '#f0f9ff',
+    primary: '#38bdf8',
+    secondary: '#0284c7',
+    accent: '#7dd3fc',
+    surface: '#1c2541',
+    radius: '1.25rem',
+    glow: 'rgba(56,189,248,0.32)',
+  },
+  'tokyo-night': {
+    background: '#1a1b26',
+    foreground: '#c0caf5',
+    primary: '#7aa2f7',
+    secondary: '#bb9af7',
+    accent: '#7dcfff',
+    surface: '#24283b',
+    radius: '1rem',
+    glow: 'rgba(122,162,247,0.36)',
+  },
 };
 
 export function resolveTheme(theme: ThemeName = 'aurora'): ThemeTokens {
-  return themePresets[theme];
+  return themePresets[theme] || themePresets.aurora;
 }
 
 export function listThemes(): ThemeName[] {
   return Object.keys(themePresets) as ThemeName[];
+}
+
+export function getThemeCSSVariables(theme: ThemeName = 'aurora'): Record<string, string> {
+  const tokens = resolveTheme(theme);
+  return {
+    '--background': tokens.background,
+    '--foreground': tokens.foreground,
+    '--primary': tokens.primary,
+    '--secondary': tokens.secondary,
+    '--accent': tokens.accent,
+    '--surface': tokens.surface,
+    '--radius': tokens.radius,
+    '--glow': tokens.glow,
+  };
+}
+
+export function applyTheme(theme: ThemeName = 'aurora'): void {
+  if (typeof document === 'undefined') return;
+  const vars = getThemeCSSVariables(theme);
+  const root = document.documentElement;
+  Object.entries(vars).forEach(([key, value]) => {
+    root.style.setProperty(key, value);
+  });
 }

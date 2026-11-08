@@ -1,58 +1,104 @@
+'use client';
+
+import { useState } from 'react';
 import Link from 'next/link';
-import {
-  Alert,
-  Avatar,
-  Badge,
-  Button,
-  Card,
-  Checkbox,
-  Input,
-  Select,
-  Skeleton,
-  Tabs,
-  Textarea,
-} from '@stackvibe-studio/ui';
+import { Badge, Button, Card } from '@stackvibe-studio/ui';
 import { toSiteHref } from '../../../lib/site';
 import { DocsShell } from '../../../components/docs-shell';
 
-const components = [
-  { name: 'Button', href: '/docs/components/button', tag: 'Action', desc: 'Flexible action controls with 4 variants, 3 sizes, and anchor support.' },
-  { name: 'Input', href: '/docs/components/input', tag: 'Form', desc: 'Text input with dark styling, accessible focus states, and seamless validation.' },
-  { name: 'Textarea', href: '/docs/components/textarea', tag: 'Form', desc: 'Multi-line text area with auto-flowing layout and strong contrast.' },
-  { name: 'Select', href: '/docs/components/select', tag: 'Form', desc: 'Dropdown selector with native keyboard support and modern styling.' },
-  { name: 'Checkbox', href: '/docs/components/checkbox', tag: 'Form', desc: 'Accessible boolean toggle for settings, lists, and multi-selection.' },
-  { name: 'Card', href: '/docs/components/card', tag: 'Layout', desc: 'Surface container with glassmorphic borders and soft backdrop blur.' },
-  { name: 'Tabs', href: '/docs/components/tabs', tag: 'Navigation', desc: 'Tabbed interface for organizing multi-view panels and complex layouts.' },
-  { name: 'Alert', href: '/docs/components/alert', tag: 'Feedback', desc: 'Contextual notification banners with success, info, warning, and error tones.' },
-  { name: 'Badge', href: '/docs/components/badge', tag: 'Meta', desc: 'Compact indicators for status tags, versions, and highlights.' },
-  { name: 'Avatar', href: '/docs/components/avatar', tag: 'Media', desc: 'User profile thumbnail with fallback initials and multiple size presets.' },
-  { name: 'Skeleton', href: '/docs/components/skeleton', tag: 'Feedback', desc: 'Pulsing loading placeholders for asynchronous data fetching.' },
+const allComponents = [
+  // Core UI
+  { name: 'Button', href: '/docs/components/button', category: 'core', tag: 'Action', desc: 'Action control with 4 variants, 3 sizes, loading indicators, and anchor mode.' },
+  { name: 'Input', href: '/docs/components/input', category: 'core', tag: 'Form', desc: 'Text input with dark styling, accessible focus states, and seamless validation.' },
+  { name: 'Textarea', href: '/docs/components/textarea', category: 'core', tag: 'Form', desc: 'Multi-line text area with auto-flowing layout and strong contrast.' },
+  { name: 'Select', href: '/docs/components/select', category: 'core', tag: 'Form', desc: 'Dropdown selector with native keyboard support and modern styling.' },
+  { name: 'Checkbox', href: '/docs/components/checkbox', category: 'core', tag: 'Form', desc: 'Accessible boolean toggle for settings, lists, and multi-selection.' },
+  { name: 'Switch', href: '/docs/components/switch', category: 'core', tag: 'Form', desc: 'Sliding toggle switch with animated thumb for fast preference changes.' },
+  { name: 'Card', href: '/docs/components/card', category: 'core', tag: 'Layout', desc: 'Surface container with glassmorphic borders and soft backdrop blur.' },
+  { name: 'Dialog', href: '/docs/components/dialog', category: 'core', tag: 'Overlay', desc: 'Accessible modal dialog with overlay backdrop blur, escape key, and header/footer.' },
+  { name: 'Drawer', href: '/docs/components/drawer', category: 'core', tag: 'Overlay', desc: 'Slide-out panel from left, right, or bottom with smooth animation.' },
+  { name: 'Tooltip', href: '/docs/components/tooltip', category: 'core', tag: 'Overlay', desc: 'Hover/focus floating tooltip with arrow and directional positioning.' },
+  { name: 'Accordion', href: '/docs/components/accordion', category: 'core', tag: 'Disclosure', desc: 'Collapsible accordion panels with smooth rotation and single/multi expand.' },
+  { name: 'Dropdown Menu', href: '/docs/components/dropdown-menu', category: 'core', tag: 'Navigation', desc: 'Action popover menu with click-outside listener and keyboard navigation.' },
+  { name: 'Tabs', href: '/docs/components/tabs', category: 'core', tag: 'Navigation', desc: 'Tabbed interface for organizing multi-view panels and complex layouts.' },
+  { name: 'Alert', href: '/docs/components/alert', category: 'core', tag: 'Feedback', desc: 'Contextual notification banners with success, info, warning, and error tones.' },
+  { name: 'Toast', href: '/docs/components/toast', category: 'core', tag: 'Feedback', desc: 'Notification toast system with toast.success(), toast.error(), and auto-dismiss.' },
+  { name: 'Progress', href: '/docs/components/progress', category: 'core', tag: 'Feedback', desc: 'Linear progress bar with gradient fills, percentage display, and multiple tones.' },
+  { name: 'Badge', href: '/docs/components/badge', category: 'core', tag: 'Meta', desc: 'Compact indicators for status tags, versions, and highlights.' },
+  { name: 'Avatar', href: '/docs/components/avatar', category: 'core', tag: 'Media', desc: 'User profile thumbnail with fallback initials and multiple size presets.' },
+  { name: 'Skeleton', href: '/docs/components/skeleton', category: 'core', tag: 'Feedback', desc: 'Pulsing loading placeholders for asynchronous data fetching.' },
+
+  // Motion
+  { name: 'Spotlight Card', href: '/docs/components/spotlight-card', category: 'motion', tag: 'Motion', desc: 'Interactive card with dynamic cursor-following radial spotlight illumination.' },
+  { name: 'Tilt Card', href: '/docs/components/tilt-card', category: 'motion', tag: 'Motion', desc: '3D perspective mouse-tracking tilt card with realistic specular glare reflection.' },
+  { name: 'Magnetic Button', href: '/docs/components/magnetic', category: 'motion', tag: 'Motion', desc: 'Physics-based magnetic attraction that draws elements toward the cursor.' },
+  { name: 'Number Ticker', href: '/docs/components/number-ticker', category: 'motion', tag: 'Motion', desc: 'Smooth animated counter from 0 to N with cubic easing for metric counters.' },
+  { name: 'Marquee', href: '/docs/components/marquee', category: 'motion', tag: 'Motion', desc: 'Infinite looping ticker with pause-on-hover for partners, logos, or news.' },
+  { name: 'Fade In Section', href: '/docs/components/fade-in', category: 'motion', tag: 'Motion', desc: 'Scroll-aware reveal wrapper for onboarding sections and storytelling layouts.' },
+  { name: 'Text Reveal', href: '/docs/components/text-reveal', category: 'motion', tag: 'Motion', desc: 'Typography reveal effect that animates text elements smoothly on entry.' },
+
+  // 3D
+  { name: 'Glass 3D Card', href: '/docs/components/glass-3d-card', category: '3d', tag: '3D Canvas', desc: 'Transparent glass surface with configurable depth and lighting.' },
+  { name: 'Wave Canvas', href: '/docs/components/wave-canvas', category: '3d', tag: '3D Canvas', desc: 'Undulating sinusoidal mesh wave canvas responsive to scene time and lighting.' },
+  { name: 'Floating Sphere', href: '/docs/components/floating-sphere', category: '3d', tag: '3D Canvas', desc: 'Organic floating distorted sphere with metallic reflection in Three.js.' },
+  { name: 'Orb Cluster', href: '/docs/components/orb-cluster', category: '3d', tag: '3D Canvas', desc: 'Layered floating orb scene for hero backgrounds and product visuals.' },
 ];
 
 export default function DocsComponentsPage() {
+  const [selectedCategory, setSelectedCategory] = useState<'all' | 'core' | 'motion' | '3d'>('all');
+
+  const filtered = selectedCategory === 'all'
+    ? allComponents
+    : allComponents.filter((c) => c.category === selectedCategory);
+
   return (
     <DocsShell
       title="Component Gallery"
-      description="Explore production-ready primitives with consistent tokens, accessible focus states, and zero runtime overhead."
+      description="Explore 30 production-ready primitives with consistent tokens, accessible focus states, and zero runtime bloat."
     >
-      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {components.map((item) => (
+      {/* Category selector */}
+      <div className="mb-8 flex flex-wrap gap-2 border-b border-white/10 pb-4">
+        {[
+          { id: 'all', label: `All Components (${allComponents.length})` },
+          { id: 'core', label: 'Core UI (19)' },
+          { id: 'motion', label: 'Motion & Physics (7)' },
+          { id: '3d', label: '3D WebGL (4)' },
+        ].map((cat) => (
+          <button
+            key={cat.id}
+            type="button"
+            onClick={() => setSelectedCategory(cat.id as any)}
+            className={`rounded-xl px-4 py-2 text-xs font-semibold transition cursor-pointer ${
+              selectedCategory === cat.id
+                ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/25 ring-1 ring-violet-400/40'
+                : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
+            }`}
+          >
+            {cat.label}
+          </button>
+        ))}
+      </div>
+
+      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+        {filtered.map((item) => (
           <Link key={item.name} href={item.href} className="group block h-full">
             <Card className="h-full bg-slate-900/80 p-5 transition duration-200 group-hover:border-violet-500/50 group-hover:bg-slate-900 group-hover:shadow-lg group-hover:shadow-violet-500/10">
-              <div className="mb-4 flex items-center justify-between">
-                <span className="text-[11px] font-semibold uppercase tracking-[0.24em] text-violet-300">
+              <div className="mb-3.5 flex items-center justify-between">
+                <span className="text-[11px] font-bold uppercase tracking-[0.24em] text-violet-300">
                   {item.tag}
                 </span>
-                <Badge variant="outline">{item.name}</Badge>
+                <Badge variant={item.category === 'motion' ? 'secondary' : item.category === '3d' ? 'primary' : 'outline'}>
+                  {item.category}
+                </Badge>
               </div>
               <h3 className="text-xl font-bold text-white group-hover:text-violet-200 transition">
                 {item.name}
               </h3>
-              <p className="mt-2.5 text-sm leading-relaxed text-slate-300">
+              <p className="mt-2 text-xs leading-relaxed text-slate-300">
                 {item.desc}
               </p>
               <div className="mt-4 flex items-center text-xs font-semibold text-violet-400 group-hover:text-violet-300">
-                View documentation →
+                Inspect component →
               </div>
             </Card>
           </Link>
@@ -60,56 +106,20 @@ export default function DocsComponentsPage() {
       </div>
 
       <div className="mt-12 rounded-3xl border border-white/10 bg-slate-900/80 p-8 shadow-xl">
-        <div className="mb-6 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 border-b border-white/10 pb-6 mb-6">
           <div>
-            <p className="text-xs uppercase tracking-[0.25em] font-semibold text-cyan-300">
-              Live Playground
+            <p className="text-xs uppercase tracking-[0.25em] font-bold text-cyan-300">
+              Interactive Workbench
             </p>
-            <h2 className="mt-1 text-2xl font-bold text-white">Interactive Composed Form</h2>
+            <h2 className="mt-1 text-2xl font-bold text-white">Full Playground Experience</h2>
           </div>
-          <Button as="a" href={toSiteHref('/playground/')} variant="secondary" size="sm">
-            Open full playground ⚡
+          <Button as="a" href={toSiteHref('/playground/')} variant="secondary" size="md">
+            Launch Sandbox ⚡
           </Button>
         </div>
-
-        <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
-          <div className="space-y-4 rounded-2xl border border-white/10 bg-slate-950/70 p-6">
-            <div className="flex flex-wrap gap-2.5">
-              <Button size="sm">Primary</Button>
-              <Button variant="secondary" size="sm">Secondary</Button>
-              <Button variant="outline" size="sm">Outline</Button>
-              <Button variant="ghost" size="sm">Ghost</Button>
-            </div>
-            <Input placeholder="Project or repository name" />
-            <Textarea rows={3} placeholder="Add release description or patch notes..." />
-            <Select defaultValue="pro">
-              <option value="starter">Starter Plan (Free)</option>
-              <option value="pro">Pro Plan ($29/mo)</option>
-              <option value="scale">Scale Plan ($99/mo)</option>
-            </Select>
-            <label className="flex items-center gap-3 text-sm text-slate-200 cursor-pointer">
-              <Checkbox defaultChecked />
-              <span>Enable automatic CDN caching and assets optimization</span>
-            </label>
-          </div>
-
-          <div className="space-y-4">
-            <Alert title="Ready for production" variant="success">
-              Every component in the gallery is designed to feel premium without forcing a heavy setup or opinionated CSS architecture.
-            </Alert>
-            <div className="rounded-2xl border border-white/10 bg-slate-950/70 p-5 space-y-3">
-              <div className="flex items-center gap-3">
-                <Avatar fallback="SV" size="md" />
-                <div>
-                  <p className="font-semibold text-sm text-white">StackVibe Studio</p>
-                  <p className="text-xs text-slate-400">@stackvibe-studio/ui</p>
-                </div>
-              </div>
-              <Skeleton rounded="md" className="h-3 w-4/5" />
-              <Skeleton rounded="md" className="h-3 w-3/5" />
-            </div>
-          </div>
-        </div>
+        <p className="text-sm text-slate-300 leading-relaxed max-w-2xl">
+          Use the live Vite-powered playground to test spatial coordinates, customize border radii, switch theme tokens, and immediately generate production snippets.
+        </p>
       </div>
     </DocsShell>
   );

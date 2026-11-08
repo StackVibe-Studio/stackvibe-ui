@@ -1,55 +1,66 @@
 # @stackvibe-studio/ui
 
-Core React component library for product teams building premium SaaS experiences.
+> Core accessible UI component library for StackVibe UI. Built for React 19, Tailwind CSS v4, and modern design systems.
 
-## Highlights
+[![npm version](https://img.shields.io/npm/v/@stackvibe-studio/ui.svg)](https://www.npmjs.com/package/@stackvibe-studio/ui)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-- Accessible defaults for forms, cards, alerts, and calls to action
-- Flexible primitives with utility-friendly props
-- Tailwind-ready styling with a compact design language
-- New additions in v0.2.0: Tabs and Skeleton loaders
-
-## Install
+## Installation
 
 ```bash
 npm install @stackvibe-studio/ui
+# or
+pnpm add @stackvibe-studio/ui
 ```
 
-## Included components
+## Features
 
-- Button
-- Badge
-- Card
-- Input
-- Textarea
-- Select
-- Checkbox
-- Alert
-- Avatar
-- Tabs
-- Skeleton
+- **19+ Production Primitives**: Dialog, Drawer, Tooltip, Accordion, Switch, Progress, Toast, DropdownMenu, Button, Input, Textarea, Select, Checkbox, Card, Alert, Badge, Avatar, Skeleton, Tabs.
+- **Accessible (WAI-ARIA)**: Full keyboard navigation, focus management, and screen-reader support.
+- **Tailwind Native**: Styled with modular tokens and high-contrast dark theme defaults.
+- **Tree-shakeable**: Dual ESM and CJS bundle exports with zero unnecessary dependencies.
 
-## Example
+## Usage
 
 ```tsx
-import { Button, Card, Tabs } from '@stackvibe-studio/ui';
+import {
+  Button,
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  toast,
+  Toaster,
+  Switch,
+  Progress,
+} from '@stackvibe-studio/ui';
+import { useState } from 'react';
 
 export function Example() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <Card className="p-5">
-      <Tabs
-        items={[
-          { id: 'overview', label: 'Overview', content: 'Overview content' },
-          { id: 'activity', label: 'Activity', content: 'Activity content' },
-        ]}
-      />
-      <Button className="mt-4">Launch</Button>
-    </Card>
+    <div>
+      <Toaster />
+      <Button onClick={() => setOpen(true)}>Open Modal</Button>
+      <Switch defaultChecked onCheckedChange={(val) => toast.info(`Toggled: ${val}`)} />
+      <Progress value={80} variant="primary" showLabel />
+
+      <Dialog open={open} onOpenChange={setOpen}>
+        <DialogHeader>
+          <DialogTitle>Modal Dialog</DialogTitle>
+        </DialogHeader>
+        <p>Dialog body content</p>
+      </Dialog>
+    </div>
   );
 }
 ```
 
 ## Documentation
 
-- Docs: https://stackvibe-studio.github.io/stackvibe-ui/
-- Playground: https://stackvibe-studio.github.io/stackvibe-ui/playground/
+Full documentation, props specifications, and live examples:
+[https://stackvibe-studio.github.io/stackvibe-ui/docs](https://stackvibe-studio.github.io/stackvibe-ui/docs)
+
+## License
+
+MIT © [StackVibe Studio](https://github.com/StackVibe-Studio)

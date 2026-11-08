@@ -193,6 +193,9 @@ importers:
       '@stackvibe-studio/motion':
         specifier: workspace:*
         version: link:../../packages/motion
+      '@stackvibe-studio/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       '@stackvibe-studio/three':
         specifier: workspace:*
         version: link:../../packages/three
@@ -239,6 +242,9 @@ importers:
       '@stackvibe-studio/motion':
         specifier: workspace:*
         version: link:../../packages/motion
+      '@stackvibe-studio/themes':
+        specifier: workspace:*
+        version: link:../../packages/themes
       '@stackvibe-studio/three':
         specifier: workspace:*
         version: link:../../packages/three

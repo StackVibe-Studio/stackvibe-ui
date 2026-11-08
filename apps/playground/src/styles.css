@@ -1,18 +1,28 @@
 @import 'tailwindcss';
+@source './**/*';
 @source '../../../packages/ui/src';
 @source '../../../packages/motion/src';
 @source '../../../packages/three/src';
 
 :root {
-  font-family: Inter, system-ui, sans-serif;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-  color: rgba(255, 255, 255, 0.87);
+  color: #f8fafc;
   background: #020617;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --background: #050816;
+  --foreground: #e2e8f0;
+  --primary: #8b5cf6;
+  --secondary: #22d3ee;
+  --accent: #c084fc;
+  --surface: #111827;
+  --radius: 16px;
+  --glow: rgba(139, 92, 246, 0.4);
 }
 
 * {
@@ -23,18 +33,20 @@ html,
 body,
 #root {
   margin: 0;
+  padding: 0;
   min-height: 100%;
   min-width: 100%;
 }
 
 body {
   min-height: 100vh;
-  background:
-    radial-gradient(circle at top, rgba(139, 92, 246, 0.3), transparent 30%),
-    radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.2), transparent 25%), #020617;
+  background-color: #020617;
+  transition: background 0.4s ease;
 }
 
 button,
-input {
+input,
+select,
+textarea {
   font: inherit;
 }
