@@ -1,6 +1,13 @@
 # StackVibe UI
 
-StackVibe UI is a premium React component ecosystem for building expressive interfaces, fluid motion systems, and immersive 3D experiences without forcing heavy optional dependencies into the core UI package.
+StackVibe UI is a premium React component ecosystem focused on expressive interfaces, motion-rich product experiences, and flexible design systems for modern teams.
+
+## Live links
+
+- Docs: https://stackvibe-studio.github.io/stackvibe-ui/
+- Playground: https://stackvibe-studio.github.io/stackvibe-ui/playground/
+- npm: https://www.npmjs.com/settings/stackvibe-studio/packages
+- GitHub: https://github.com/StackVibe-Studio/stackvibe-ui
 
 ## Product vision
 
@@ -10,31 +17,47 @@ StackVibe UI is a premium React component ecosystem for building expressive inte
 - Unified design tokens and configuration model
 - Open-source-first foundation with premium extension potential
 
-## Monorepo layout
+## Included packages
 
-- `apps/docs` — documentation experience and homepage
-- `apps/playground` — visual component playground
-- `packages/ui` — core component library
+- `apps/docs` — landing page and documentation experience
+- `apps/playground` — interactive visual playground for component testing
+- `packages/ui` — core UI primitives and component library
 - `packages/motion` — motion primitives and animation utilities
-- `packages/three` — 3D components and material presets
-- `packages/themes` — design token presets and theme definitions
-- `packages/registry` — component discovery metadata
-- `packages/cli` — registry and install automation
+- `packages/three` — 3D visual primitives and presets
+- `packages/themes` — theme definitions and token presets
+- `packages/registry` — component metadata and discovery registry
+- `packages/cli` — scaffolding and registry automation
 - `examples/*` — starter apps for Next.js and Vite
+
+## Component catalog
+
+The base library includes a growing set of product-ready primitives:
+
+- Button
+- Badge
+- Card
+- Input
+- Textarea
+- Select
+- Checkbox
+- Alert
+- Avatar
 
 ## Quick start
 
 ```bash
 pnpm install
-pnpm dev
+pnpm build
+pnpm --filter @stackvibe-studio/docs dev
+pnpm --filter @stackvibe-studio/playground dev
 ```
 
-## Distribution model
+## Install from npm
 
 ```bash
-npm install @stackvibe/ui
-npm install @stackvibe/motion motion
-npm install @stackvibe/3d three @react-three/fiber @react-three/drei
+npm install @stackvibe-studio/ui
+npm install @stackvibe-studio/motion
+npm install @stackvibe-studio/three three @react-three/fiber @react-three/drei
 ```
 
 ## Design principles
@@ -44,7 +67,7 @@ npm install @stackvibe/3d three @react-three/fiber @react-three/drei
 - Accessibility-first interactions
 - Independent optional packages
 - Type-safe public APIs
-- Performance aware rendering
+- Performance-aware rendering
 
 ## Mission
 

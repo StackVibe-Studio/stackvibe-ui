@@ -19,8 +19,12 @@ Usage:
 
 Available components:
   button
+  tabs
+  skeleton
   spotlight-card
+  fade-in-section
   glass-3d-card
+  orb-cluster
 `);
 }
 
@@ -41,8 +45,12 @@ function addComponent(component: string) {
   const pkg = ensurePackageJson();
   const packageMap: Record<string, string> = {
     button: '@stackvibe-studio/ui',
+    tabs: '@stackvibe-studio/ui',
+    skeleton: '@stackvibe-studio/ui',
     'spotlight-card': '@stackvibe-studio/motion',
+    'fade-in-section': '@stackvibe-studio/motion',
     'glass-3d-card': '@stackvibe-studio/three',
+    'orb-cluster': '@stackvibe-studio/three',
   };
 
   const selected = packageMap[component];

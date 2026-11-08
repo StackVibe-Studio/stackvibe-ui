@@ -1,4 +1,11 @@
-export type ThemeName = 'aurora' | 'obsidian' | 'holographic' | 'soft-minimal' | 'neon-futuristic';
+export type ThemeName =
+  | 'aurora'
+  | 'obsidian'
+  | 'holographic'
+  | 'soft-minimal'
+  | 'neon-futuristic'
+  | 'sunset-glow'
+  | 'midnight-gold';
 
 export type ThemeTokens = {
   background: string;
@@ -62,8 +69,32 @@ export const themePresets: Record<ThemeName, ThemeTokens> = {
     radius: '1.4rem',
     glow: 'rgba(34,211,238,0.35)',
   },
+  'sunset-glow': {
+    background: '#1c0b13',
+    foreground: '#fff7ed',
+    primary: '#fb7185',
+    secondary: '#fbbf24',
+    accent: '#fdba74',
+    surface: '#2b1221',
+    radius: '1.1rem',
+    glow: 'rgba(251,113,133,0.35)',
+  },
+  'midnight-gold': {
+    background: '#0b1220',
+    foreground: '#f8fafc',
+    primary: '#fbbf24',
+    secondary: '#a78bfa',
+    accent: '#f59e0b',
+    surface: '#111827',
+    radius: '1rem',
+    glow: 'rgba(251,191,36,0.26)',
+  },
 };
 
 export function resolveTheme(theme: ThemeName = 'aurora'): ThemeTokens {
   return themePresets[theme];
+}
+
+export function listThemes(): ThemeName[] {
+  return Object.keys(themePresets) as ThemeName[];
 }
