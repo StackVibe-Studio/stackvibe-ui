@@ -39,17 +39,17 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build documentation site
-        run: pnpm --filter @stackvibe/docs build
+        run: pnpm --filter @stackvibe-studio/docs build
 
       - name: Build playground site
-        run: pnpm --filter @stackvibe/playground build
+        run: pnpm --filter @stackvibe-studio/playground build
 
       - name: Prepare Pages bundle
         run: |
           mkdir -p site/docs
           mkdir -p site/playground
-          cp -R apps/docs/out/. site/docs/
-          cp -R apps/playground/dist/. site/playground/
+          test -d apps/docs/out && cp -R apps/docs/out/. site/docs/
+          test -d apps/playground/dist && cp -R apps/playground/dist/. site/playground/
           cat > site/index.html <<'EOF'
           <!doctype html>
           <html lang="en">
