@@ -35,6 +35,12 @@ jobs:
         run: pnpm build
 
       - name: Publish public packages to npm
-        run: pnpm -r --filter './packages/*' publish --access public --no-git-checks
+        run: |
+          for dir in packages/*; do
+            if [ -d "$dir" ] && [ -f "$dir/package.json" ]; then
+              echo "Publishing $dir..."
+              (cd "$dir" && pnpm publish --access public --no-git-checks)
+            fi
+          done
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
