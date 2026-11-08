@@ -1,0 +1,32 @@
+# StackVibe UI full project metadata
+
+## Package overview
+
+- stackvibe-ui — monorepo root
+- apps/docs — Next.js documentation platform
+- apps/playground — interactive visual playground
+- packages/ui — Core UI primitives
+- packages/motion — Motion-driven components
+- packages/three — 3D components
+
+## Component inventory
+
+- Button
+- Card
+- Input
+- Badge
+- SpotlightCard
+- TextReveal
+- Glass3DCard
+- FloatingSphere
+
+## Installation
+
+```bash
+pnpm install
+pnpm --filter @stackvibe/docs dev
+```
+
+## Distribution philosophy
+
+The core UI package stays lightweight and independent from the 3D and motion stacks. Additional packages are opt-in and maintain clear boundaries.

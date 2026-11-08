@@ -1,0 +1,15 @@
+# StackVibe UI
+
+StackVibe UI is a monorepo for a premium React component ecosystem focused on core UI, motion, and immersive 3D experiences.
+
+## Packages
+
+- @stackvibe/ui — accessible 2D primitives
+- @stackvibe/motion — animation components and motion utilities
+- @stackvibe/three — React Three Fiber components
+
+## Getting started
+
+1. Install workspace dependencies with pnpm.
+2. Run the docs site in apps/docs.
+3. Import individual packages from their package entry points.

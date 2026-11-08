@@ -1,0 +1,43 @@
+{
+  "name": "@stackvibe-studio/cli",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "CLI for installing and scaffolding StackVibe UI packages.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StackVibe-Studio/stackvibe-ui.git"
+  },
+  "homepage": "https://stackvibe-studio.github.io/stackvibe-ui/",
+  "bugs": {
+    "url": "https://github.com/StackVibe-Studio/stackvibe-ui/issues"
+  },
+  "license": "MIT",
+  "bin": {
+    "stackvibe": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --clean && tsc --project tsconfig.json --emitDeclarationOnly",
+    "typecheck": "tsc --noEmit",
+    "dev": "node --loader tsx src/index.ts"
+  },
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.0"
+  }
+}

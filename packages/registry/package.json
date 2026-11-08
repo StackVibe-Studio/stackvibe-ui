@@ -1,0 +1,39 @@
+{
+  "name": "@stackvibe-studio/registry",
+  "version": "0.1.0",
+  "type": "module",
+  "description": "Registry metadata for StackVibe UI components.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/StackVibe-Studio/stackvibe-ui.git"
+  },
+  "homepage": "https://stackvibe-studio.github.io/stackvibe-ui/",
+  "bugs": {
+    "url": "https://github.com/StackVibe-Studio/stackvibe-ui/issues"
+  },
+  "license": "MIT",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    }
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --clean && tsc --project tsconfig.json --emitDeclarationOnly",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "tsup": "^8.1.0",
+    "typescript": "^5.7.0"
+  }
+}
