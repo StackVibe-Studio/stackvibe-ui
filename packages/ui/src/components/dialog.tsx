@@ -50,7 +50,7 @@ export function Dialog({ open, onOpenChange, children, className = '' }: DialogP
       <div
         ref={dialogRef}
         className={[
-          'relative w-full max-w-lg rounded-3xl border border-white/10 bg-slate-900/95 p-6 shadow-2xl text-white backdrop-blur-xl transition-transform duration-200',
+          'relative w-full max-w-lg max-h-[90vh] overflow-y-auto rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-900/95 p-5 sm:p-6 shadow-2xl text-white backdrop-blur-xl transition-transform duration-200',
           className,
         ].join(' ')}
       >

@@ -127,19 +127,19 @@ export default function MyComponent() {
 
   return (
     <div
-      className="min-h-screen px-4 py-8 text-white md:px-8 selection:bg-violet-500/30 selection:text-white transition-colors duration-500"
+      className="min-h-screen px-3 sm:px-6 py-4 sm:py-8 text-white md:px-8 selection:bg-violet-500/30 selection:text-white transition-colors duration-500 overflow-x-hidden"
       style={{
         background: `radial-gradient(circle at top, ${themeTokens.primary}26, transparent 40%), radial-gradient(circle at bottom right, ${themeTokens.secondary}22, transparent 35%), #030712`,
       }}
     >
       <Toaster />
 
-      <div className="mx-auto max-w-7xl space-y-8">
+      <div className="mx-auto max-w-7xl space-y-6 sm:space-y-8">
         {/* Navigation Bar */}
-        <header className="flex flex-col gap-4 rounded-3xl border border-white/10 bg-slate-900/80 p-5 backdrop-blur-xl md:flex-row md:items-center md:justify-between shadow-2xl">
-          <div className="flex items-center gap-3.5">
+        <header className="flex flex-col gap-4 rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-900/80 p-4 sm:p-5 backdrop-blur-xl md:flex-row md:items-center md:justify-between shadow-2xl">
+          <div className="flex items-center gap-3">
             <span
-              className="flex h-11 w-11 items-center justify-center rounded-2xl text-lg font-bold text-white shadow-xl transition-all"
+              className="flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-2xl text-base sm:text-lg font-bold text-white shadow-xl transition-all shrink-0"
               style={{
                 background: `linear-gradient(135deg, ${themeTokens.primary}, ${themeTokens.secondary})`,
                 boxShadow: `0 0 25px ${themeTokens.glow}`,
@@ -149,33 +149,33 @@ export default function MyComponent() {
             </span>
             <div>
               <div className="flex items-center gap-2">
-                <span className="text-xl font-bold tracking-tight">StackVibe Studio</span>
-                <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-slate-200 ring-1 ring-white/15">
+                <span className="text-lg sm:text-xl font-bold tracking-tight">StackVibe Studio</span>
+                <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] sm:text-[11px] font-semibold text-slate-200 ring-1 ring-white/15">
                   Playground v0.3.2
                 </span>
               </div>
-              <p className="text-xs text-slate-400">Interactive Design System, Physics & WebGL Sandbox</p>
+              <p className="text-xs text-slate-400">Interactive Design System, Physics &amp; WebGL Sandbox</p>
             </div>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2.5 text-xs">
+          <div className="flex flex-wrap items-center gap-2 text-xs">
             <a
               href={docsHomeUrl}
-              className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
+              className="rounded-xl border border-white/10 bg-white/5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
             >
-              ← Docs Home
+              ← Docs
             </a>
             <a
               href={componentsGalleryUrl}
-              className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
+              className="rounded-xl border border-white/10 bg-white/5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
             >
-              30 Components Gallery
+              30 Components
             </a>
             <Button
               size="sm"
               variant="outline"
               onClick={() => setCodeModalOpen(true)}
-              className="flex items-center gap-1.5"
+              className="flex items-center gap-1.5 text-xs px-2.5 sm:px-3"
             >
               <span>Export Code ⎘</span>
             </Button>
@@ -183,7 +183,7 @@ export default function MyComponent() {
               href="https://github.com/StackVibe-Studio/stackvibe-ui"
               target="_blank"
               rel="noreferrer"
-              className="rounded-xl border border-white/10 bg-white/5 px-3.5 py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
+              className="rounded-xl border border-white/10 bg-white/5 px-2.5 sm:px-3.5 py-1.5 sm:py-2 font-medium text-slate-200 transition hover:bg-white/15 hover:text-white"
             >
               GitHub ↗
             </a>
@@ -191,8 +191,8 @@ export default function MyComponent() {
         </header>
 
         {/* Global Controls & Theme Palettes Bar */}
-        <div className="space-y-4 rounded-3xl border border-white/10 bg-slate-900/70 p-5 backdrop-blur-xl shadow-xl">
-          <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+        <div className="space-y-4 rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-900/70 p-4 sm:p-5 backdrop-blur-xl shadow-xl">
+          <div className="flex flex-col gap-3 sm:gap-4 lg:flex-row lg:items-center lg:justify-between">
             <div className="flex items-center gap-2">
               <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Theme Presets:</span>
               <span className="font-mono text-xs font-bold capitalize text-white" style={{ color: themeTokens.primary }}>
@@ -201,16 +201,16 @@ export default function MyComponent() {
             </div>
 
             {/* Radius & Quick Action Controls */}
-            <div className="flex flex-wrap items-center gap-5 text-xs text-slate-300">
-              <div className="flex items-center gap-2.5">
-                <span className="font-semibold text-slate-400">Border Radius:</span>
+            <div className="flex flex-wrap items-center gap-3 sm:gap-5 text-xs text-slate-300">
+              <div className="flex items-center gap-2 sm:gap-2.5">
+                <span className="font-semibold text-slate-400">Radius:</span>
                 <input
                   type="range"
                   min="4"
                   max="32"
                   value={radius}
                   onChange={(e) => setRadius(Number(e.target.value))}
-                  className="w-28 accent-violet-500 cursor-pointer"
+                  className="w-24 sm:w-28 accent-violet-500 cursor-pointer"
                 />
                 <span className="font-mono font-bold text-white w-8">{radius}px</span>
               </div>
@@ -227,7 +227,7 @@ export default function MyComponent() {
           </div>
 
           {/* Theme Palette Buttons with Swatches */}
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-1.5 sm:gap-2">
             {presets.map((preset) => {
               const pTokens = resolveTheme(preset);
               const isActive = theme === preset;
@@ -239,7 +239,7 @@ export default function MyComponent() {
                     setTheme(preset);
                     toast.info(`Theme set to ${preset.replace('-', ' ')}`);
                   }}
-                  className={`flex items-center gap-2 rounded-xl px-3 py-1.5 text-xs font-medium transition cursor-pointer capitalize border ${
+                  className={`flex items-center gap-1.5 sm:gap-2 rounded-xl px-2.5 sm:px-3 py-1.5 text-xs font-medium transition cursor-pointer capitalize border ${
                     isActive
                       ? 'border-white/30 text-white font-bold shadow-lg'
                       : 'border-white/5 bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
@@ -255,10 +255,10 @@ export default function MyComponent() {
                   }
                 >
                   <span
-                    className="h-2.5 w-2.5 rounded-full ring-1 ring-white/30"
+                    className="h-2 sm:h-2.5 w-2 sm:w-2.5 rounded-full ring-1 ring-white/30 shrink-0"
                     style={{ backgroundColor: pTokens.primary }}
                   />
-                  {preset.replace('-', ' ')}
+                  <span className="truncate">{preset.replace('-', ' ')}</span>
                 </button>
               );
             })}
@@ -266,11 +266,11 @@ export default function MyComponent() {
         </div>
 
         {/* Tab Selection */}
-        <div className="flex flex-wrap gap-2 border-b border-white/10 pb-3">
+        <div className="flex overflow-x-auto no-scrollbar sm:flex-wrap gap-2 border-b border-white/10 pb-3">
           {[
-            { id: 'ui', label: '1. Core UI Primitives & Overlays', count: '14+' },
-            { id: 'motion', label: '2. Motion, Physics & Spring Dynamics', count: '6+' },
-            { id: 'three', label: '3. 3D WebGL Canvases & Shaders', count: '4+' },
+            { id: 'ui', label: 'Core UI', fullLabel: '1. Core UI Primitives & Overlays', count: '14+' },
+            { id: 'motion', label: 'Motion & Physics', fullLabel: '2. Motion, Physics & Spring Dynamics', count: '6+' },
+            { id: 'three', label: '3D WebGL', fullLabel: '3. 3D WebGL Canvases & Shaders', count: '4+' },
           ].map((tab) => {
             const isActive = activeTab === tab.id;
             return (
@@ -278,7 +278,7 @@ export default function MyComponent() {
                 key={tab.id}
                 type="button"
                 onClick={() => setActiveTab(tab.id as any)}
-                className={`flex items-center gap-2 rounded-2xl px-5 py-2.5 text-xs font-semibold transition cursor-pointer border ${
+                className={`flex items-center gap-2 rounded-2xl px-3.5 sm:px-5 py-2 sm:py-2.5 text-xs font-semibold transition cursor-pointer border whitespace-nowrap ${
                   isActive
                     ? 'border-white/20 bg-white/10 text-white shadow-lg'
                     : 'border-transparent text-slate-400 hover:bg-white/5 hover:text-white'
@@ -292,7 +292,8 @@ export default function MyComponent() {
                     : {}
                 }
               >
-                <span>{tab.label}</span>
+                <span className="sm:hidden">{tab.label}</span>
+                <span className="hidden sm:inline">{tab.fullLabel}</span>
                 <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] text-slate-300">
                   {tab.count}
                 </span>

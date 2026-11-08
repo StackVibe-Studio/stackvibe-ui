@@ -11,7 +11,7 @@ export interface FloatingSphereProps {
 
 export function FloatingSphere({ color = '#8b5cf6', scale = 1, speed = 1.2 }: FloatingSphereProps) {
   return (
-    <div className="h-64 w-64 rounded-full">
+    <div className="h-56 w-56 sm:h-64 sm:w-64 max-w-full rounded-full touch-pan-y">
       <Canvas camera={{ position: [0, 0, 3] }}>
         <ambientLight intensity={1.2} />
         <directionalLight position={[2, 2, 2]} intensity={1.5} />

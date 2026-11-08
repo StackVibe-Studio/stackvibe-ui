@@ -646,57 +646,57 @@ export default async function ComponentDetailPage({ params }: { params: Promise<
   return (
     <DocsShell title={component.title} description={component.description}>
       <div className="grid gap-6 xl:grid-cols-[1.25fr_0.75fr]">
-        <Card className="bg-slate-900/80 p-6 border-white/10 shadow-lg">
-          <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-6">
+        <Card className="bg-slate-900/80 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-white/10 shadow-lg">
+          <div className="flex items-center justify-between border-b border-white/10 pb-3 sm:pb-4 mb-4 sm:mb-6">
             <p className="text-xs uppercase tracking-[0.24em] font-bold text-violet-300">
               Interactive Preview
             </p>
-            <span className="rounded-full bg-emerald-500/10 px-2 py-0.5 text-xs font-semibold text-emerald-400 ring-1 ring-emerald-500/20">
+            <span className="rounded-full bg-emerald-500/10 px-2.5 py-0.5 text-[11px] font-semibold text-emerald-400 ring-1 ring-emerald-500/20">
               Live
             </span>
           </div>
-          <div className="min-h-[160px] flex items-center justify-center rounded-2xl border border-white/5 bg-slate-950/50 p-6">
+          <div className="min-h-[160px] flex items-center justify-center rounded-xl sm:rounded-2xl border border-white/5 bg-slate-950/50 p-4 sm:p-6 overflow-x-auto max-w-full">
             {component.preview}
           </div>
         </Card>
 
-        <Card className="bg-slate-900/80 p-6 border-white/10 shadow-lg">
-          <div className="border-b border-white/10 pb-4 mb-4">
+        <Card className="bg-slate-900/80 p-4 sm:p-6 rounded-2xl sm:rounded-3xl border-white/10 shadow-lg">
+          <div className="border-b border-white/10 pb-3 sm:pb-4 mb-4">
             <p className="text-xs uppercase tracking-[0.24em] font-bold text-cyan-300">
               Component Props
             </p>
           </div>
-          <ul className="space-y-2 text-sm text-slate-200">
+          <ul className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-1 gap-2 text-sm text-slate-200">
             {component.props.map((prop) => (
               <li
                 key={prop}
-                className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-950/60 px-3.5 py-2 font-mono text-xs text-violet-300"
+                className="flex items-center justify-between rounded-xl border border-white/10 bg-slate-950/60 px-3 py-1.5 sm:px-3.5 sm:py-2 font-mono text-xs text-violet-300"
               >
-                <span>{prop}</span>
-                <span className="text-[10px] text-slate-400 font-sans">prop</span>
+                <span className="truncate">{prop}</span>
+                <span className="text-[10px] text-slate-400 font-sans ml-2 shrink-0">prop</span>
               </li>
             ))}
           </ul>
         </Card>
       </div>
 
-      <div className="mt-8 rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-lg">
-        <div className="flex items-center justify-between border-b border-white/10 pb-4 mb-4">
+      <div className="mt-6 sm:mt-8 rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-900/80 p-4 sm:p-6 shadow-lg">
+        <div className="flex items-center justify-between border-b border-white/10 pb-3 sm:pb-4 mb-4">
           <p className="text-xs uppercase tracking-[0.24em] font-bold text-violet-300">
             Usage Code
           </p>
           <span className="text-xs font-mono text-slate-400">TypeScript / JSX</span>
         </div>
-        <pre className="overflow-x-auto rounded-2xl border border-white/10 bg-slate-950 p-5 text-sm text-slate-200 font-mono leading-relaxed">
+        <pre className="overflow-x-auto rounded-xl sm:rounded-2xl border border-white/10 bg-slate-950 p-3.5 sm:p-5 text-xs sm:text-sm text-slate-200 font-mono leading-relaxed max-w-full">
           {component.code}
         </pre>
       </div>
 
-      <div className="mt-8 flex flex-wrap items-center justify-between gap-4 border-t border-white/10 pt-6">
-        <Button as="a" href={toSiteHref('/docs/components')} variant="outline" size="md">
+      <div className="mt-6 sm:mt-8 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 sm:gap-4 border-t border-white/10 pt-6">
+        <Button as="a" href={toSiteHref('/docs/components')} variant="outline" size="md" className="w-full sm:w-auto">
           ← Back to gallery
         </Button>
-        <Button as="a" href={toSiteHref('/docs')} variant="secondary" size="md">
+        <Button as="a" href={toSiteHref('/docs')} variant="secondary" size="md" className="w-full sm:w-auto">
           Docs overview →
         </Button>
       </div>

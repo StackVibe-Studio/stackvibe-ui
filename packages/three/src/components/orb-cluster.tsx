@@ -15,7 +15,7 @@ export function OrbCluster({
   speed = 1.2,
 }: OrbClusterProps) {
   return (
-    <div className="h-72 w-full overflow-hidden rounded-[2rem] border border-white/10 bg-slate-950/80">
+    <div className="h-60 sm:h-72 w-full overflow-hidden rounded-2xl sm:rounded-[2rem] border border-white/10 bg-slate-950/80 touch-pan-y">
       <Canvas camera={{ position: [0, 0, 6] }}>
         <ambientLight intensity={1.2} />
         <directionalLight position={[3, 3, 3]} intensity={1.5} />

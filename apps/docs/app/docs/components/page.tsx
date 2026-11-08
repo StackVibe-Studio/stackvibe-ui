@@ -57,7 +57,7 @@ export default function DocsComponentsPage() {
       description="Explore 30 production-ready primitives with consistent tokens, accessible focus states, and zero runtime bloat."
     >
       {/* Category selector */}
-      <div className="mb-8 flex flex-wrap gap-2 border-b border-white/10 pb-4">
+      <div className="mb-6 sm:mb-8 flex overflow-x-auto no-scrollbar sm:flex-wrap gap-2 border-b border-white/10 pb-3 sm:pb-4">
         {[
           { id: 'all', label: `All Components (${allComponents.length})` },
           { id: 'core', label: 'Core UI (19)' },
@@ -68,7 +68,7 @@ export default function DocsComponentsPage() {
             key={cat.id}
             type="button"
             onClick={() => setSelectedCategory(cat.id as any)}
-            className={`rounded-xl px-4 py-2 text-xs font-semibold transition cursor-pointer ${
+            className={`rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 text-xs font-semibold transition cursor-pointer whitespace-nowrap ${
               selectedCategory === cat.id
                 ? 'bg-violet-600 text-white shadow-lg shadow-violet-500/25 ring-1 ring-violet-400/40'
                 : 'bg-white/5 text-slate-300 hover:bg-white/10 hover:text-white'
@@ -79,7 +79,7 @@ export default function DocsComponentsPage() {
         ))}
       </div>
 
-      <div className="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
+      <div className="grid gap-4 sm:gap-5 grid-cols-1 sm:grid-cols-2 xl:grid-cols-3">
         {filtered.map((item) => (
           <Link key={item.name} href={item.href} className="group block h-full">
             <Card className="h-full bg-slate-900/80 p-5 transition duration-200 group-hover:border-violet-500/50 group-hover:bg-slate-900 group-hover:shadow-lg group-hover:shadow-violet-500/10">

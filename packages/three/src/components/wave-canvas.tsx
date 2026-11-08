@@ -71,7 +71,7 @@ export function WaveCanvas({
   className = '',
 }: WaveCanvasProps) {
   return (
-    <div className={['h-64 w-full rounded-3xl overflow-hidden bg-slate-950/50', className].join(' ')}>
+    <div className={['h-64 w-full rounded-2xl sm:rounded-3xl overflow-hidden bg-slate-950/50 touch-pan-y', className].join(' ')}>
       <Canvas camera={{ position: [0, -1, 3], fov: 60 }}>
         <ambientLight intensity={0.8} />
         <directionalLight position={[3, 5, 4]} intensity={1.5} />

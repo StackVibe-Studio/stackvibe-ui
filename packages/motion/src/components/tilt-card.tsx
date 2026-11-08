@@ -78,7 +78,7 @@ export function TiltCard({
           transformStyle: 'preserve-3d',
         }}
         className={[
-          'relative overflow-hidden rounded-3xl border border-white/10 bg-slate-900/80 p-6 shadow-2xl backdrop-blur-md',
+          'relative overflow-hidden rounded-2xl sm:rounded-3xl border border-white/10 bg-slate-900/80 p-5 sm:p-6 shadow-2xl backdrop-blur-md',
           className,
         ].join(' ')}
       >

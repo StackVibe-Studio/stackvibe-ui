@@ -59,7 +59,7 @@ export function Drawer({
     >
       <div
         className={[
-          'fixed z-[10000] bg-slate-900/95 p-6 text-white backdrop-blur-xl overflow-y-auto transition-transform duration-300',
+          'fixed z-[10000] bg-slate-900/95 p-5 sm:p-6 text-white backdrop-blur-xl overflow-y-auto transition-transform duration-300',
           positionClasses[position],
           className,
         ].join(' ')}

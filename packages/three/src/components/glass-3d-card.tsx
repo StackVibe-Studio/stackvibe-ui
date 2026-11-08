@@ -37,7 +37,7 @@ export function Glass3DCard({
 
   return (
     <div className={['relative', className].join(' ')} style={style}>
-      <div className="absolute inset-0 opacity-80">
+      <div className="absolute inset-0 opacity-80 pointer-events-none">
         <Canvas dpr={[1, 2]} camera={{ position: [0, 0, 5], fov: 50 }}>
           <ambientLight intensity={0.8} />
           <directionalLight position={[3, 3, 3]} intensity={1.2} />
