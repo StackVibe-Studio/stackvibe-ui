@@ -1,6 +1,6 @@
 # @stackvibe-studio/three
 
-Product-grade 3D visual primitives, canvas environments, and WebGL components built with Three.js and React Three Fiber.
+> Product-grade 3D visual primitives, canvas environments, and WebGL components built with Three.js and React Three Fiber.
 
 Designed for immersive hero sections, interactive landing page surfaces, and futuristic product cards with smooth 60fps animations.
 
@@ -9,12 +9,12 @@ Designed for immersive hero sections, interactive landing page surfaces, and fut
 
 ## Features
 
-- **WaveCanvas**: WebGL undulating sinusoidal mesh and wave canvas with dynamic light physics.
-- **Glass3DCard**: Glassmorphism-style 3D card wrapper with realistic specular reflection and tilt.
-- **FloatingSphere**: Physics-based floating sphere with ambient lighting and rotation.
-- **OrbCluster**: Multi-layered 3D orb cluster designed for ambient hero backgrounds.
-- **Zero layout shift**: Fully responsive canvas containers with graceful fallback rendering.
-- **Framework agnostic**: Works with Next.js (App Router & Pages Router), Vite, Remix, and Gatsby.
+- **`WaveCanvas`**: WebGL undulating sinusoidal mesh canvas with dynamic lighting, configurable amplitude, speed, roughness, and metalness.
+- **`Glass3DCard`**: Glassmorphism-style 3D card wrapper with realistic specular reflection and tilt.
+- **`FloatingSphere`**: Physics-based floating sphere with ambient lighting and rotation.
+- **`OrbCluster`**: Multi-layered 3D orb cluster designed for ambient hero backgrounds.
+- **Zero Layout Shift**: Fully responsive canvas containers with graceful fallback rendering.
+- **Framework Agnostic**: Works seamlessly with Next.js (SSR safe), Vite, Remix, and React 19.
 
 ## Installation
 
@@ -24,58 +24,47 @@ pnpm add @stackvibe-studio/three three @react-three/fiber @react-three/drei
 npm install @stackvibe-studio/three three @react-three/fiber @react-three/drei
 ```
 
-## Usage
+## Usage & Customization
 
-### WaveCanvas (Hero Backgrounds)
+### WaveCanvas
 
 ```tsx
 import { WaveCanvas } from '@stackvibe-studio/three';
 
-export function HeroSection() {
+export function HeroBackground() {
   return (
-    <div className="relative h-[500px] w-full overflow-hidden rounded-2xl bg-zinc-950">
-      <WaveCanvas 
-        wireframe={false} 
-        speed={1.2} 
-        color="#6366f1" 
-        className="absolute inset-0" 
+    <div className="relative w-full h-[500px] overflow-hidden rounded-3xl bg-slate-950">
+      <WaveCanvas
+        speed={1.5}
+        amplitude={0.4}
+        color="#8b5cf6"
+        roughness={0.2}
+        metalness={0.7}
+        wireframe={false}
       />
-      <div className="relative z-10 flex h-full flex-col items-center justify-center text-center p-8">
-        <h1 className="text-4xl font-bold text-white">Next-Gen Interface Canvas</h1>
-        <p className="mt-2 text-zinc-400">Interactive 3D surfaces rendered in real-time WebGL.</p>
+      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+        <h1 className="text-4xl font-bold text-white">Next Generation 3D UI</h1>
       </div>
     </div>
   );
 }
 ```
 
-### Glass3DCard & OrbCluster
+### FloatingSphere & OrbCluster
 
 ```tsx
-import { Glass3DCard, OrbCluster } from '@stackvibe-studio/three';
+import { FloatingSphere, OrbCluster } from '@stackvibe-studio/three';
 
-export function FeatureCard() {
-  return (
-    <div className="relative flex items-center justify-center p-12">
-      <OrbCluster className="absolute inset-0 pointer-events-none opacity-60" />
-      <Glass3DCard className="w-80 h-96 p-6">
-        <h3 className="text-xl font-bold text-white">Pro Access</h3>
-        <p className="text-zinc-400 mt-2">Enterprise-grade WebGL rendering primitives.</p>
-      </Glass3DCard>
-    </div>
-  );
-}
+<div className="w-full h-80">
+  <FloatingSphere color="#6366f1" size={1.5} />
+</div>
 ```
 
-## Components Reference
+## Documentation
 
-| Component | Description | Props |
-| :--- | :--- | :--- |
-| `WaveCanvas` | Real-time undulating 3D sine-wave plane | `wireframe?: boolean`, `speed?: number`, `color?: string`, `className?: string` |
-| `Glass3DCard` | 3D glass card with reflective lighting | `children?: ReactNode`, `className?: string` |
-| `FloatingSphere` | Autonomous 3D floating orb with glow | `color?: string`, `wireframe?: boolean`, `className?: string` |
-| `OrbCluster` | Ambient particle cluster with floating orbs | `count?: number`, `className?: string` |
+- **Live Documentation**: [https://stackvibe-studio.github.io/stackvibe-ui/](https://stackvibe-studio.github.io/stackvibe-ui/)
+- **WebGL Playground**: [https://stackvibe-studio.github.io/stackvibe-ui/playground/](https://stackvibe-studio.github.io/stackvibe-ui/playground/)
 
 ## License
 
-MIT © [StackVibe Studio](https://github.com/StackVibe-Studio/stackvibe-ui)
+MIT © [StackVibe Studio](https://github.com/StackVibe-Studio)

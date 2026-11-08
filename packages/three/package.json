@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/three",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "3D component layer for StackVibe UI.",
   "repository": {

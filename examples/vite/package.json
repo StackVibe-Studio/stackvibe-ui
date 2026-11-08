@@ -1,7 +1,18 @@
 {
   "name": "example-vite",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.3.2",
+  "description": "Vite React example consuming StackVibe UI packages.",
+  "keywords": [
+    "vite",
+    "react",
+    "react-19",
+    "stackvibe",
+    "stackvibe-ui",
+    "example",
+    "starter",
+    "template"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

@@ -1,7 +1,20 @@
 {
   "name": "@stackvibe-studio/docs",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.3.2",
+  "description": "Documentation portal and interactive showcase for StackVibe UI.",
+  "keywords": [
+    "documentation",
+    "docs",
+    "nextjs",
+    "nextjs-15",
+    "react-19",
+    "tailwind",
+    "tailwindcss",
+    "design-system",
+    "ui-library",
+    "stackvibe"
+  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",

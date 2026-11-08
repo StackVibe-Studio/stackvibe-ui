@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/themes",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Theme tokens and presets for StackVibe UI.",
   "repository": {

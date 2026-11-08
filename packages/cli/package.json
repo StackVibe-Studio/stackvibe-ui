@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/cli",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "CLI for installing and scaffolding StackVibe UI packages.",
   "repository": {
@@ -14,13 +14,17 @@
   "license": "MIT",
   "keywords": [
     "cli",
+    "scaffold",
     "scaffolding",
     "generator",
     "component-installer",
     "stackvibe",
     "design-system",
     "react",
-    "tailwind"
+    "tailwind",
+    "tailwindcss",
+    "add-component",
+    "developer-tools"
   ],
   "bin": {
     "stackvibe": "./dist/index.js"

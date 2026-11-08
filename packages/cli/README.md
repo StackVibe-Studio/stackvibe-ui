@@ -1,6 +1,6 @@
 # @stackvibe-studio/cli
 
-Interactive command line interface for scaffolding, configuring, and adding StackVibe UI components to React, Next.js, and Vite projects.
+> Interactive command line interface for scaffolding, configuring, and adding StackVibe UI components to React, Next.js, and Vite projects.
 
 [![npm version](https://img.shields.io/npm/v/@stackvibe-studio/cli.svg)](https://www.npmjs.com/package/@stackvibe-studio/cli)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
@@ -19,46 +19,39 @@ npm install -g @stackvibe-studio/cli
 
 ### `init`
 
-Initializes StackVibe UI inside your current working directory, installs core dependencies, and configures Tailwind CSS.
+Initializes StackVibe UI inside your current working directory, installs core dependencies, and configures Tailwind CSS:
 
 ```bash
 npx @stackvibe-studio/cli init
 ```
 
+### `add [component]`
+
+Installs a component primitive into your project:
+
+```bash
+# Add a single component
+npx @stackvibe-studio/cli add button
+
+# Add motion components
+npx @stackvibe-studio/cli add magnetic tilt-card
+
+# Add 3D canvas
+npx @stackvibe-studio/cli add wave-canvas
+```
+
 ### `list`
 
-Lists all 30 available components across Core UI, Motion, and 3D WebGL categories.
+Lists all available components from `@stackvibe-studio/registry`:
 
 ```bash
 npx @stackvibe-studio/cli list
 ```
 
-### `add <component>`
+## Documentation
 
-Adds a specific component and installs any necessary peer dependencies (`framer-motion`, `lucide-react`, `three`, etc.).
-
-```bash
-# Add Core UI Primitives
-npx @stackvibe-studio/cli add dialog
-npx @stackvibe-studio/cli add drawer
-npx @stackvibe-studio/cli add toast
-npx @stackvibe-studio/cli add dropdown-menu
-npx @stackvibe-studio/cli add button
-npx @stackvibe-studio/cli add accordion
-
-# Add Motion Primitives
-npx @stackvibe-studio/cli add magnetic
-npx @stackvibe-studio/cli add marquee
-npx @stackvibe-studio/cli add number-ticker
-npx @stackvibe-studio/cli add tilt-card
-npx @stackvibe-studio/cli add spotlight-card
-
-# Add 3D Canvas Primitives
-npx @stackvibe-studio/cli add wave-canvas
-npx @stackvibe-studio/cli add glass-3d-card
-npx @stackvibe-studio/cli add orb-cluster
-```
+- **Live Documentation**: [https://stackvibe-studio.github.io/stackvibe-ui/](https://stackvibe-studio.github.io/stackvibe-ui/)
 
 ## License
 
-MIT © [StackVibe Studio](https://github.com/StackVibe-Studio/stackvibe-ui)
+MIT © [StackVibe Studio](https://github.com/StackVibe-Studio)

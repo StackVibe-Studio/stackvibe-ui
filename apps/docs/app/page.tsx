@@ -136,7 +136,7 @@ export default function HomePage() {
                 StackVibe UI
               </span>
               <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-200 ring-1 ring-white/15">
-                v0.3.1
+                v0.3.2
               </span>
             </div>
           </Link>
@@ -364,7 +364,7 @@ export default function HomePage() {
                     <Button
                       size="sm"
                       variant="secondary"
-                      onClick={() => toast.success('Deployed version v0.3.1 successfully!', 'Production Alert')}
+                      onClick={() => toast.success('Deployed version v0.3.2 successfully!', 'Production Alert')}
                     >
                       Trigger Toast Alert
                     </Button>
@@ -741,7 +741,7 @@ export default function HomePage() {
                 S
               </span>
               <div>
-                <p className="text-sm font-bold text-white">StackVibe UI v0.3.1</p>
+                <p className="text-sm font-bold text-white">StackVibe UI v0.3.2</p>
                 <p className="text-xs text-slate-400">Design beyond the ordinary.</p>
               </div>
             </div>

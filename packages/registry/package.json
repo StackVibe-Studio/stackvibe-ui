@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/registry",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Registry metadata for StackVibe UI components.",
   "repository": {
@@ -18,7 +18,10 @@
     "design-system",
     "component-metadata",
     "stackvibe",
-    "cli-registry"
+    "cli-registry",
+    "catalog",
+    "component-catalog",
+    "ui-metadata"
   ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",

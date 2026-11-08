@@ -1,7 +1,19 @@
 {
   "name": "@stackvibe-studio/playground",
   "private": true,
-  "version": "0.3.1",
+  "version": "0.3.2",
+  "description": "Interactive real-time sandbox and token studio for StackVibe UI.",
+  "keywords": [
+    "playground",
+    "sandbox",
+    "vite",
+    "react-19",
+    "theme-editor",
+    "token-studio",
+    "physics-sandbox",
+    "webgl-sandbox",
+    "stackvibe"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "vite build",

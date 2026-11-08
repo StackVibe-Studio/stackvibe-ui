@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/ui",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "type": "module",
   "description": "Core React component library for StackVibe UI.",
   "repository": {

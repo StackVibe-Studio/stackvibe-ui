@@ -1,6 +1,6 @@
 # @stackvibe-studio/registry
 
-Centralized component metadata registry and catalog indexing all 30 StackVibe UI components across Core UI, Motion, and 3D WebGL packages.
+> Centralized component metadata registry and catalog indexing all 30 StackVibe UI components across Core UI, Motion, and 3D WebGL packages.
 
 Powering the CLI (`stackvibe add`), documentation search, and automated component discovery workflows.
 
@@ -10,8 +10,8 @@ Powering the CLI (`stackvibe add`), documentation search, and automated componen
 ## Features
 
 - **30 Indexed Components**: Full coverage of UI primitives, animations, physics, and WebGL canvases.
-- **Categorized Taxonomy**: `core-ui`, `motion`, and `three`.
-- **Dependency Resolution**: Automatically maps required peer dependencies (e.g., `framer-motion`, `three`, `@react-three/fiber`).
+- **Categorized Taxonomy**: `core`, `motion`, `3d`, and `theme`.
+- **Dependency Resolution**: Automatically maps required peer dependencies (e.g., `motion`, `three`, `@react-three/fiber`).
 - **Tag Search**: Searchable by design system keywords (e.g. `dialog`, `modal`, `spring`, `ticker`, `matrix`).
 
 ## Installation
@@ -25,46 +25,20 @@ npm install @stackvibe-studio/registry
 ## Usage
 
 ```ts
-import { 
-  getRegistryEntry, 
-  listRegistryEntries, 
-  getRegistryEntriesByCategory 
-} from '@stackvibe-studio/registry';
+import { componentRegistry, RegistryComponent } from '@stackvibe-studio/registry';
 
-// Get metadata for a single component
-const dialog = getRegistryEntry('dialog');
-console.log(dialog);
-/*
-{
-  name: 'dialog',
-  package: '@stackvibe-studio/ui',
-  category: 'core-ui',
-  description: 'Accessible modal dialog with backdrop blur...',
-  dependencies: ['lucide-react'],
-  tags: ['modal', 'dialog', 'overlay', 'popup', 'window']
-}
-*/
+// Search by tag or name
+const dialogMeta = componentRegistry.find((c) => c.name === 'dialog');
+console.log(dialogMeta?.packageName); // '@stackvibe-studio/ui'
 
-// List all motion components
-const motionComponents = getRegistryEntriesByCategory('motion');
-
-// List all registered components
-const allComponents = listRegistryEntries();
+// Filter by category
+const motionComponents = componentRegistry.filter((c) => c.category === 'motion');
 ```
 
-## Schema
+## Documentation
 
-```ts
-export interface RegistryEntry {
-  name: string;
-  package: '@stackvibe-studio/ui' | '@stackvibe-studio/motion' | '@stackvibe-studio/three';
-  category: 'core-ui' | 'motion' | 'three';
-  description: string;
-  dependencies: string[];
-  tags: string[];
-}
-```
+- **Live Documentation**: [https://stackvibe-studio.github.io/stackvibe-ui/](https://stackvibe-studio.github.io/stackvibe-ui/)
 
 ## License
 
-MIT © [StackVibe Studio](https://github.com/StackVibe-Studio/stackvibe-ui)
+MIT © [StackVibe Studio](https://github.com/StackVibe-Studio)
