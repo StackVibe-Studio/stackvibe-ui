@@ -39,10 +39,10 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build documentation site
-        run: pnpm --filter @stackvibe-studio/docs build
+        run: pnpm --filter @stackvibe-studio/docs... build
 
       - name: Build playground site
-        run: pnpm --filter @stackvibe-studio/playground build
+        run: pnpm --filter @stackvibe-studio/playground... build
 
       - name: Prepare Pages bundle
         run: |
