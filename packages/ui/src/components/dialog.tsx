@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, useRef, type ReactNode } from 'react';
+import { useEffect, useRef, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface DialogProps {
   open: boolean;
@@ -11,6 +12,11 @@ export interface DialogProps {
 
 export function Dialog({ open, onOpenChange, children, className = '' }: DialogProps) {
   const dialogRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -30,13 +36,13 @@ export function Dialog({ open, onOpenChange, children, className = '' }: DialogP
     };
   }, [open, onOpenChange]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
-  return (
+  const content = (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-md transition-opacity duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) onOpenChange(false);
       }}
@@ -44,7 +50,7 @@ export function Dialog({ open, onOpenChange, children, className = '' }: DialogP
       <div
         ref={dialogRef}
         className={[
-          'relative w-full max-w-lg rounded-3xl border border-white/10 bg-slate-900/95 p-6 shadow-2xl shadow-violet-500/10 text-white animate-in zoom-in-95 duration-200',
+          'relative w-full max-w-lg rounded-3xl border border-white/10 bg-slate-900/95 p-6 shadow-2xl text-white backdrop-blur-xl transition-transform duration-200',
           className,
         ].join(' ')}
       >
@@ -62,6 +68,8 @@ export function Dialog({ open, onOpenChange, children, className = '' }: DialogP
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(content, document.body) : null;
 }
 
 export function DialogHeader({ children, className = '' }: { children: ReactNode; className?: string }) {

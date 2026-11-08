@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/three",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "3D component layer for StackVibe UI.",
   "repository": {
@@ -12,6 +12,24 @@
     "url": "https://github.com/StackVibe-Studio/stackvibe-ui/issues"
   },
   "license": "MIT",
+  "keywords": [
+    "react",
+    "react-19",
+    "three",
+    "threejs",
+    "webgl",
+    "react-three-fiber",
+    "drei",
+    "3d",
+    "canvas",
+    "wave-canvas",
+    "floating-sphere",
+    "glassmorphism",
+    "glass-card",
+    "orb-cluster",
+    "shaders",
+    "stackvibe"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

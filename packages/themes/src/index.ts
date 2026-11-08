@@ -154,6 +154,14 @@ export function getThemeCSSVariables(theme: ThemeName = 'aurora'): Record<string
     '--surface': tokens.surface,
     '--radius': tokens.radius,
     '--glow': tokens.glow,
+    '--sv-background': tokens.background,
+    '--sv-foreground': tokens.foreground,
+    '--sv-primary': tokens.primary,
+    '--sv-secondary': tokens.secondary,
+    '--sv-accent': tokens.accent,
+    '--sv-surface': tokens.surface,
+    '--sv-radius': tokens.radius,
+    '--sv-glow': tokens.glow,
   };
 }
 
@@ -161,6 +169,7 @@ export function applyTheme(theme: ThemeName = 'aurora'): void {
   if (typeof document === 'undefined') return;
   const vars = getThemeCSSVariables(theme);
   const root = document.documentElement;
+  root.setAttribute('data-theme', theme);
   Object.entries(vars).forEach(([key, value]) => {
     root.style.setProperty(key, value);
   });

@@ -151,7 +151,7 @@ export default function MyComponent() {
               <div className="flex items-center gap-2">
                 <span className="text-xl font-bold tracking-tight">StackVibe Studio</span>
                 <span className="rounded-full bg-white/10 px-2.5 py-0.5 text-[11px] font-semibold text-slate-200 ring-1 ring-white/15">
-                  Playground v0.3.0
+                  Playground v0.3.1
                 </span>
               </div>
               <p className="text-xs text-slate-400">Interactive Design System, Physics & WebGL Sandbox</p>

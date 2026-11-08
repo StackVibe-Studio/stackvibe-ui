@@ -31,12 +31,12 @@
 
 | Package | Version | Description |
 |---|---|---|
-| [`@stackvibe-studio/ui`](./packages/ui) | `v0.3.0` | 19+ Core accessible UI primitives (Buttons, Modals, Drawers, Tooltips, Toasts, Form controls). |
-| [`@stackvibe-studio/motion`](./packages/motion) | `v0.3.0` | Motion and physics primitives (Magnetic, 3D TiltCard, NumberTicker, Marquee, Spotlight). |
-| [`@stackvibe-studio/three`](./packages/three) | `v0.3.0` | 3D WebGL canvases (WaveCanvas, Glass3DCard, FloatingSphere, OrbCluster). |
-| [`@stackvibe-studio/themes`](./packages/themes) | `v0.3.0` | 11 Theme presets (Aurora, Obsidian, Cyberpunk, Matrix, Tokyo Night) and token helpers. |
-| [`@stackvibe-studio/registry`](./packages/registry) | `v0.3.0` | Comprehensive component metadata, tags, and dependency manifests. |
-| [`@stackvibe-studio/cli`](./packages/cli) | `v0.3.0` | Developer CLI to scaffold and add components (`npx @stackvibe-studio/cli add <name>`). |
+| [`@stackvibe-studio/ui`](./packages/ui) | `v0.3.1` | 19+ Core accessible UI primitives (Buttons, Modals, Drawers, Tooltips, Toasts, Form controls). |
+| [`@stackvibe-studio/motion`](./packages/motion) | `v0.3.1` | Motion and physics primitives (Magnetic, 3D TiltCard, NumberTicker, Marquee, Spotlight). |
+| [`@stackvibe-studio/three`](./packages/three) | `v0.3.1` | 3D WebGL canvases (WaveCanvas, Glass3DCard, FloatingSphere, OrbCluster). |
+| [`@stackvibe-studio/themes`](./packages/themes) | `v0.3.1` | 11 Theme presets (Aurora, Obsidian, Cyberpunk, Matrix, Tokyo Night) and token helpers. |
+| [`@stackvibe-studio/registry`](./packages/registry) | `v0.3.1` | Comprehensive component metadata, tags, and dependency manifests. |
+| [`@stackvibe-studio/cli`](./packages/cli) | `v0.3.1` | Developer CLI to scaffold and add components (`npx @stackvibe-studio/cli add <name>`). |
 
 ---
 

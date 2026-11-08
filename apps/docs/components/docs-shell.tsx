@@ -2,8 +2,8 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState, type ReactNode } from 'react';
-import { applyTheme, listThemes, type ThemeName } from '@stackvibe-studio/themes';
+import { useState, useEffect, type ReactNode } from 'react';
+import { applyTheme, listThemes, resolveTheme, type ThemeName } from '@stackvibe-studio/themes';
 import { toSiteHref } from '../lib/site';
 
 const navigation = [
@@ -78,10 +78,29 @@ export function DocsShell({
   // Strip basePath for active matching if present
   const normalizedPath = pathname?.replace(/^\/stackvibe-ui/, '') || '';
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('sv-theme') as ThemeName | null;
+      if (saved && listThemes().includes(saved)) {
+        setActiveTheme(saved);
+        applyTheme(saved);
+      } else {
+        applyTheme('aurora');
+      }
+    } catch {
+      applyTheme('aurora');
+    }
+  }, []);
+
   const handleThemeChange = (theme: ThemeName) => {
     setActiveTheme(theme);
     applyTheme(theme);
+    try {
+      localStorage.setItem('sv-theme', theme);
+    } catch {}
   };
+
+  const currentTokens = resolveTheme(activeTheme);
 
   const filteredNavigation = navigation
     .map((section) => ({
@@ -93,33 +112,56 @@ export function DocsShell({
     .filter((section) => section.items.length > 0);
 
   return (
-    <div className="docs-shell-grid min-h-screen bg-slate-950 text-slate-50 selection:bg-violet-500/30 selection:text-white">
+    <div className="docs-shell-grid min-h-screen text-slate-50 selection:bg-violet-500/30 selection:text-white bg-transparent">
       {/* Top utility bar */}
-      <div className="border-b border-white/10 bg-slate-950/80 backdrop-blur-xl sticky top-0 z-40">
+      <header
+        className="border-b border-white/10 backdrop-blur-xl sticky top-0 z-40 transition-colors duration-300"
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--background, #050816) 85%, transparent)',
+        }}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-3.5">
           <Link
             href="/"
             className="flex items-center gap-3 text-sm font-semibold tracking-wider text-white transition hover:opacity-90"
           >
-            <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 text-sm font-bold text-white shadow-md shadow-violet-500/25">
+            <span
+              className="flex h-8 w-8 items-center justify-center rounded-xl text-sm font-bold text-white shadow-md transition-all duration-300"
+              style={{
+                background: `linear-gradient(135deg, ${currentTokens.primary}, ${currentTokens.secondary})`,
+                boxShadow: `0 0 15px ${currentTokens.glow}`,
+              }}
+            >
               S
             </span>
-            <span className="bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent font-bold">
               StackVibe UI
             </span>
-            <span className="rounded-full bg-violet-500/15 px-2 py-0.5 text-[10px] font-semibold text-violet-300 ring-1 ring-violet-400/20">
-              v0.3.0
+            <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-200 ring-1 ring-white/15">
+              v0.3.1
             </span>
           </Link>
 
           <div className="flex items-center gap-3">
             {/* Live Theme Switcher */}
-            <div className="hidden md:flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1">
-              <span className="text-[11px] text-slate-400 font-medium">Theme:</span>
+            <div
+              className="flex items-center gap-2 rounded-xl border border-white/15 px-3 py-1.5 transition-all duration-300 shadow-sm"
+              style={{
+                backgroundColor: 'color-mix(in srgb, var(--surface, #0f172a) 60%, transparent)',
+                borderColor: `${currentTokens.primary}50`,
+                boxShadow: `0 0 12px ${currentTokens.glow}`,
+              }}
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full ring-1 ring-white/40"
+                style={{ backgroundColor: currentTokens.primary }}
+              />
+              <span className="text-[11px] text-slate-300 font-medium">Theme:</span>
               <select
                 value={activeTheme}
                 onChange={(e) => handleThemeChange(e.target.value as ThemeName)}
-                className="bg-transparent text-xs font-semibold text-violet-300 focus:outline-none cursor-pointer capitalize"
+                className="bg-transparent text-xs font-bold focus:outline-none cursor-pointer capitalize"
+                style={{ color: currentTokens.primary }}
               >
                 {listThemes().map((t) => (
                   <option key={t} value={t} className="bg-slate-900 text-white">
@@ -148,14 +190,20 @@ export function DocsShell({
             </a>
           </div>
         </div>
-      </div>
+      </header>
 
       <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="grid gap-8 lg:grid-cols-[280px_minmax(0,1fr)]">
-          <aside className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 backdrop-blur-xl h-fit lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto">
+          <aside
+            className="rounded-3xl border border-white/10 p-5 backdrop-blur-xl h-fit lg:sticky lg:top-20 max-h-[calc(100vh-6rem)] overflow-y-auto transition-colors duration-300"
+            style={{
+              backgroundColor: 'color-mix(in srgb, var(--surface, #0f172a) 70%, transparent)',
+            }}
+          >
             <Link
               href="/"
-              className="mb-4 flex items-center gap-2 text-xs font-semibold tracking-[0.2em] text-violet-300 uppercase transition hover:text-white"
+              className="mb-4 flex items-center gap-2 text-xs font-semibold tracking-[0.2em] uppercase transition hover:text-white"
+              style={{ color: currentTokens.primary }}
             >
               <span>←</span> Back to Overview
             </Link>
@@ -218,7 +266,7 @@ export function DocsShell({
                     className="flex items-center justify-between rounded-lg p-2 hover:bg-white/5 transition"
                   >
                     <span>@stackvibe-studio/ui</span>
-                    <span className="text-violet-400">v0.3.0 ↗</span>
+                    <span className="text-violet-400">v0.3.1 ↗</span>
                   </a>
                   <a
                     href="https://www.npmjs.com/package/@stackvibe-studio/motion"
@@ -227,7 +275,7 @@ export function DocsShell({
                     className="flex items-center justify-between rounded-lg p-2 hover:bg-white/5 transition"
                   >
                     <span>@stackvibe-studio/motion</span>
-                    <span className="text-violet-400">v0.3.0 ↗</span>
+                    <span className="text-violet-400">v0.3.1 ↗</span>
                   </a>
                   <a
                     href="https://www.npmjs.com/package/@stackvibe-studio/three"
@@ -236,7 +284,7 @@ export function DocsShell({
                     className="flex items-center justify-between rounded-lg p-2 hover:bg-white/5 transition"
                   >
                     <span>@stackvibe-studio/three</span>
-                    <span className="text-violet-400">v0.3.0 ↗</span>
+                    <span className="text-violet-400">v0.3.1 ↗</span>
                   </a>
                 </div>
               </div>

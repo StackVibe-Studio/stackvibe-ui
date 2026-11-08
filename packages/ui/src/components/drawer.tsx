@@ -1,6 +1,7 @@
 'use client';
 
-import { useEffect, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
+import { createPortal } from 'react-dom';
 
 export interface DrawerProps {
   open: boolean;
@@ -17,6 +18,12 @@ export function Drawer({
   children,
   className = '',
 }: DrawerProps) {
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && open) onOpenChange(false);
@@ -33,26 +40,26 @@ export function Drawer({
     };
   }, [open, onOpenChange]);
 
-  if (!open) return null;
+  if (!open || !mounted) return null;
 
   const positionClasses = {
-    right: 'inset-y-0 right-0 w-full max-w-md border-l border-white/10 animate-in slide-in-from-right duration-300',
-    left: 'inset-y-0 left-0 w-full max-w-md border-r border-white/10 animate-in slide-in-from-left duration-300',
-    bottom: 'inset-x-0 bottom-0 max-h-[85vh] w-full border-t border-white/10 rounded-t-3xl animate-in slide-in-from-bottom duration-300',
+    right: 'inset-y-0 right-0 w-full max-w-md border-l border-white/10 shadow-2xl',
+    left: 'inset-y-0 left-0 w-full max-w-md border-r border-white/10 shadow-2xl',
+    bottom: 'inset-x-0 bottom-0 max-h-[85vh] w-full border-t border-white/10 rounded-t-3xl shadow-2xl',
   };
 
-  return (
+  const content = (
     <div
       role="dialog"
       aria-modal="true"
-      className="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm animate-in fade-in duration-200"
+      className="fixed inset-0 z-[9999] bg-black/80 backdrop-blur-sm transition-opacity duration-200"
       onClick={(e) => {
         if (e.target === e.currentTarget) onOpenChange(false);
       }}
     >
       <div
         className={[
-          'fixed bg-slate-900/95 p-6 shadow-2xl text-white overflow-y-auto',
+          'fixed z-[10000] bg-slate-900/95 p-6 text-white backdrop-blur-xl overflow-y-auto transition-transform duration-300',
           positionClasses[position],
           className,
         ].join(' ')}
@@ -71,10 +78,12 @@ export function Drawer({
       </div>
     </div>
   );
+
+  return typeof document !== 'undefined' ? createPortal(content, document.body) : null;
 }
 
 export function DrawerHeader({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <div className={['mb-6 space-y-1.5', className].join(' ')}>{children}</div>;
+  return <div className={['mb-4 space-y-1.5', className].join(' ')}>{children}</div>;
 }
 
 export function DrawerTitle({ children, className = '' }: { children: ReactNode; className?: string }) {

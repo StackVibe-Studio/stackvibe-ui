@@ -51,7 +51,7 @@ export function DropdownMenu({
         <div
           role="menu"
           className={[
-            'absolute z-50 mt-2 min-w-[12rem] rounded-2xl border border-white/10 bg-slate-900/95 p-1.5 shadow-2xl backdrop-blur-xl animate-in fade-in zoom-in-95 duration-150',
+            'absolute z-50 mt-2 min-w-[12rem] rounded-2xl border border-white/10 bg-slate-900/95 p-1.5 shadow-2xl backdrop-blur-xl transition-all duration-150',
             align === 'right' ? 'right-0' : 'left-0',
             className,
           ].join(' ')}

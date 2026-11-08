@@ -1,6 +1,6 @@
 {
   "name": "@stackvibe-studio/themes",
-  "version": "0.3.0",
+  "version": "0.3.1",
   "type": "module",
   "description": "Theme tokens and presets for StackVibe UI.",
   "repository": {
@@ -12,6 +12,21 @@
     "url": "https://github.com/StackVibe-Studio/stackvibe-ui/issues"
   },
   "license": "MIT",
+  "keywords": [
+    "themes",
+    "design-tokens",
+    "token-system",
+    "color-palettes",
+    "dark-mode",
+    "aurora",
+    "obsidian",
+    "cyberpunk",
+    "matrix",
+    "tokyo-night",
+    "css-variables",
+    "theme-switcher",
+    "stackvibe"
+  ],
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "exports": {

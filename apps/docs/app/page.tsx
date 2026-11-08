@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
   Accordion,
@@ -27,7 +27,7 @@ import {
   Tooltip,
 } from '@stackvibe-studio/ui';
 import { Magnetic, Marquee, NumberTicker, TiltCard } from '@stackvibe-studio/motion';
-import { applyTheme, listThemes, type ThemeName } from '@stackvibe-studio/themes';
+import { applyTheme, listThemes, resolveTheme, type ThemeName } from '@stackvibe-studio/themes';
 import { toSiteHref } from '../lib/site';
 
 const navItems = [
@@ -77,6 +77,20 @@ export default function HomePage() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [currentTheme, setCurrentTheme] = useState<ThemeName>('aurora');
 
+  useEffect(() => {
+    try {
+      const saved = localStorage.getItem('sv-theme') as ThemeName | null;
+      if (saved && listThemes().includes(saved)) {
+        setCurrentTheme(saved);
+        applyTheme(saved);
+      } else {
+        applyTheme('aurora');
+      }
+    } catch {
+      applyTheme('aurora');
+    }
+  }, []);
+
   const copyInstallCommand = () => {
     navigator.clipboard.writeText('npm install @stackvibe-studio/ui @stackvibe-studio/motion @stackvibe-studio/three');
     setCopied(true);
@@ -87,26 +101,42 @@ export default function HomePage() {
   const handleThemeChange = (theme: ThemeName) => {
     setCurrentTheme(theme);
     applyTheme(theme);
+    try {
+      localStorage.setItem('sv-theme', theme);
+    } catch {}
     toast.info(`Switched theme preset to "${theme.replace('-', ' ')}"`, 'Theme Updated');
   };
 
+  const currentTokens = resolveTheme(currentTheme);
+
   return (
-    <main className="min-h-screen bg-slate-950 text-slate-50 selection:bg-violet-500/30 selection:text-white">
+    <main className="min-h-screen text-slate-50 selection:bg-violet-500/30 selection:text-white bg-transparent">
       <Toaster />
 
       {/* Sticky Top Navigation */}
-      <header className="sticky top-0 z-50 border-b border-white/10 bg-slate-950/80 backdrop-blur-xl">
+      <header
+        className="sticky top-0 z-50 border-b border-white/10 backdrop-blur-xl transition-colors duration-300"
+        style={{
+          backgroundColor: 'color-mix(in srgb, var(--background, #050816) 85%, transparent)',
+        }}
+      >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
           <Link href="/" className="flex items-center gap-3">
-            <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-tr from-violet-600 to-indigo-500 text-base font-bold text-white shadow-lg shadow-violet-500/30 ring-1 ring-violet-400/40">
+            <span
+              className="flex h-9 w-9 items-center justify-center rounded-xl text-base font-bold text-white shadow-lg ring-1 ring-white/20 transition-all duration-300"
+              style={{
+                background: `linear-gradient(135deg, ${currentTokens.primary}, ${currentTokens.secondary})`,
+                boxShadow: `0 0 18px ${currentTokens.glow}`,
+              }}
+            >
               S
             </span>
             <div className="flex items-center gap-2">
               <span className="text-base font-bold tracking-tight bg-gradient-to-r from-white via-slate-100 to-slate-400 bg-clip-text text-transparent">
                 StackVibe UI
               </span>
-              <span className="rounded-full bg-violet-500/15 px-2 py-0.5 text-[10px] font-semibold text-violet-300 ring-1 ring-violet-400/20">
-                v0.3.0
+              <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-semibold text-slate-200 ring-1 ring-white/15">
+                v0.3.1
               </span>
             </div>
           </Link>
@@ -135,12 +165,24 @@ export default function HomePage() {
 
           <div className="flex items-center gap-3">
             {/* Live Theme Switcher */}
-            <div className="hidden sm:flex items-center gap-1.5 rounded-xl border border-white/10 bg-white/5 px-2.5 py-1">
-              <span className="text-[11px] text-slate-400 font-medium">Theme:</span>
+            <div
+              className="flex items-center gap-2 rounded-xl border border-white/15 px-3 py-1.5 transition-all duration-300 shadow-sm"
+              style={{
+                backgroundColor: 'color-mix(in srgb, var(--surface, #0f172a) 60%, transparent)',
+                borderColor: `${currentTokens.primary}50`,
+                boxShadow: `0 0 12px ${currentTokens.glow}`,
+              }}
+            >
+              <span
+                className="h-2.5 w-2.5 rounded-full ring-1 ring-white/40"
+                style={{ backgroundColor: currentTokens.primary }}
+              />
+              <span className="text-[11px] text-slate-300 font-medium hidden sm:inline">Theme:</span>
               <select
                 value={currentTheme}
                 onChange={(e) => handleThemeChange(e.target.value as ThemeName)}
-                className="bg-transparent text-xs font-semibold text-violet-300 focus:outline-none cursor-pointer capitalize"
+                className="bg-transparent text-xs font-bold focus:outline-none cursor-pointer capitalize"
+                style={{ color: currentTokens.primary }}
               >
                 {listThemes().map((t) => (
                   <option key={t} value={t} className="bg-slate-900 text-white">
@@ -322,7 +364,7 @@ export default function HomePage() {
                     <Button
                       size="sm"
                       variant="secondary"
-                      onClick={() => toast.success('Deployed version v0.3.0 successfully!', 'Production Alert')}
+                      onClick={() => toast.success('Deployed version v0.3.1 successfully!', 'Production Alert')}
                     >
                       Trigger Toast Alert
                     </Button>
@@ -699,7 +741,7 @@ export default function HomePage() {
                 S
               </span>
               <div>
-                <p className="text-sm font-bold text-white">StackVibe UI v0.3.0</p>
+                <p className="text-sm font-bold text-white">StackVibe UI v0.3.1</p>
                 <p className="text-xs text-slate-400">Design beyond the ordinary.</p>
               </div>
             </div>
