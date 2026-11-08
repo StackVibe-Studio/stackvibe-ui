@@ -1,4 +1,7 @@
 @import 'tailwindcss';
+@source '../../../packages/ui/src';
+@source '../../../packages/motion/src';
+@source '../../../packages/three/src';
 
 :root {
   --background: #020617;
