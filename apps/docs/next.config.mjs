@@ -12,6 +12,9 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  env: {
+    NEXT_PUBLIC_BASE_PATH: isGithubPages ? '/stackvibe-ui' : '',
+  },
   basePath: isGithubPages ? '/stackvibe-ui' : undefined,
   assetPrefix: isGithubPages ? '/stackvibe-ui/' : undefined,
 };

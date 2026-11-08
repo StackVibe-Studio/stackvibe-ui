@@ -1,5 +1,6 @@
 import { notFound } from 'next/navigation';
 import { Alert, Badge, Button, Card, Checkbox, Input, Select, Textarea } from '@stackvibe-studio/ui';
+import { toSiteHref } from '../../../../lib/site';
 import { DocsShell } from '../../../../components/docs-shell';
 
 const componentRegistry = {
@@ -12,7 +13,7 @@ const componentRegistry = {
         <Button>Primary</Button>
         <Button variant="secondary">Secondary</Button>
         <Button variant="outline">Outline</Button>
-        <Button as="a" href="/docs/components" variant="ghost">Docs</Button>
+        <Button as="a" href={toSiteHref('/docs/components')} variant="ghost">Docs</Button>
       </div>
     ),
     code: `import { Button } from '@stackvibe-studio/ui';\n\n<Button>Primary</Button>\n<Button variant="secondary">Secondary</Button>`,
@@ -106,8 +107,8 @@ export default async function ComponentDetailPage({ params }: { params: Promise<
       </div>
 
       <div className="mt-8 flex flex-wrap gap-3">
-        <Button as="a" href="/docs/components" size="lg">Back to gallery</Button>
-        <Button as="a" href="/docs" variant="secondary" size="lg">Docs home</Button>
+        <Button as="a" href={toSiteHref('/docs/components')} size="lg">Back to gallery</Button>
+        <Button as="a" href={toSiteHref('/docs')} variant="secondary" size="lg">Docs home</Button>
       </div>
     </DocsShell>
   );

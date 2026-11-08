@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Alert, Badge, Button, Card } from '@stackvibe-studio/ui';
+import { toSiteHref } from '../../lib/site';
 import { DocsShell } from '../../components/docs-shell';
 
 const principles = [
@@ -56,8 +57,8 @@ export default function DocsOverviewPage() {
       </div>
 
       <div className="mt-10 flex flex-wrap gap-4">
-        <Button as="a" href="/docs/components" size="lg">Browse components</Button>
-        <Button as="a" href="/" variant="outline" size="lg">Back to home</Button>
+        <Button as="a" href={toSiteHref('/docs/components')} size="lg">Browse components</Button>
+        <Button as="a" href={toSiteHref('/')} variant="outline" size="lg">Back to home</Button>
       </div>
 
       <div className="mt-10 rounded-3xl border border-white/10 bg-slate-900/80 p-6">
@@ -68,7 +69,7 @@ npm install @stackvibe-studio/motion
 npm install @stackvibe-studio/three`}
         </pre>
         <div className="mt-4">
-          <Link href="/docs/components" className="text-sm text-violet-200 transition hover:text-violet-100">
+          <Link href={toSiteHref('/docs/components')} className="text-sm text-violet-200 transition hover:text-violet-100">
             Explore the component gallery →
           </Link>
         </div>

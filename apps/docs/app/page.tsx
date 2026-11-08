@@ -1,4 +1,5 @@
 import { Badge, Button, Card, Input, Textarea, Select, Checkbox, Alert } from '@stackvibe-studio/ui';
+import { toSiteHref } from '../lib/site';
 
 const navItems = [
   { label: 'Overview', href: '#overview' },
@@ -48,7 +49,7 @@ export default function HomePage() {
 
           <nav className="hidden items-center gap-8 text-sm text-slate-300 md:flex">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="transition hover:text-white">
+              <a key={item.href} href={toSiteHref(item.href)} className="transition hover:text-white">
                 {item.label}
               </a>
             ))}
@@ -82,7 +83,7 @@ export default function HomePage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Button as="a" href="#components" size="lg">Explore components</Button>
-              <Button as="a" href="/docs" variant="secondary" size="lg">
+              <Button as="a" href={toSiteHref('/docs')} variant="secondary" size="lg">
                 View docs
               </Button>
             </div>

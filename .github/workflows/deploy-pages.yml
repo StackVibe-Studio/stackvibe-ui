@@ -47,20 +47,19 @@ jobs:
 
       - name: Prepare Pages bundle
         run: |
-          mkdir -p site/docs
           mkdir -p site/playground
-          test -d apps/docs/out && cp -R apps/docs/out/. site/docs/
+          test -d apps/docs/out && cp -R apps/docs/out/. site/
           test -d apps/playground/dist && cp -R apps/playground/dist/. site/playground/
           cat > site/index.html <<'EOF'
           <!doctype html>
           <html lang="en">
             <head>
               <meta charset="utf-8" />
-              <meta http-equiv="refresh" content="0; url=/stackvibe-ui/docs/" />
+              <meta http-equiv="refresh" content="0; url=/stackvibe-ui/" />
               <title>StackVibe UI</title>
             </head>
             <body>
-              <p>Redirecting to the <a href="/stackvibe-ui/docs/">StackVibe docs</a>...</p>
+              <p>Redirecting to the <a href="/stackvibe-ui/">StackVibe docs</a>...</p>
             </body>
           </html>
           EOF

@@ -45,9 +45,26 @@ export function Button(props: ButtonProps) {
     className,
   ].join(' ');
 
+  const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
+  const resolveHref = (href: string) => {
+    if (!href) return href;
+    if (
+      href.startsWith('#') ||
+      href.startsWith('http://') ||
+      href.startsWith('https://') ||
+      href.startsWith('mailto:') ||
+      href.startsWith('tel:') ||
+      href.startsWith('//')
+    ) {
+      return href;
+    }
+    if (href === '/') return basePath || '/';
+    return `${basePath}${href.startsWith('/') ? href : `/${href}`}`;
+  };
+
   if (as === 'a') {
     const { href, ...anchorProps } = rest as Omit<AnchorHTMLAttributes<HTMLAnchorElement>, 'type'>;
-    return <a {...anchorProps} href={href} className={commonClassName} />;
+    return <a {...anchorProps} href={resolveHref(href)} className={commonClassName} />;
   }
 
   const { type = 'button', ...buttonProps } = rest as ButtonHTMLAttributes<HTMLButtonElement>;

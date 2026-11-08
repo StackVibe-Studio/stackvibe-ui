@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { ReactNode } from 'react';
+import { toSiteHref } from '../lib/site';
 
 const navigation = [
   {
@@ -35,7 +36,7 @@ export function DocsShell({
       <div className="mx-auto max-w-7xl px-6 py-8">
         <div className="grid gap-8 lg:grid-cols-[260px_minmax(0,1fr)]">
           <aside className="rounded-3xl border border-white/10 bg-slate-900/70 p-5 backdrop-blur-xl">
-            <Link href="/" className="mb-6 flex items-center gap-3 text-sm font-medium tracking-[0.2em] text-violet-200 uppercase">
+            <Link href={toSiteHref('/')} className="mb-6 flex items-center gap-3 text-sm font-medium tracking-[0.2em] text-violet-200 uppercase">
               <span className="flex h-8 w-8 items-center justify-center rounded-xl bg-violet-500/20 text-sm font-semibold text-violet-100 ring-1 ring-violet-400/30">
                 S
               </span>
@@ -49,7 +50,7 @@ export function DocsShell({
                   <ul className="space-y-2 text-sm text-slate-300">
                     {section.items.map((item) => (
                       <li key={item.href}>
-                        <Link href={item.href} className="block rounded-xl border border-transparent px-3 py-2 transition hover:border-white/10 hover:bg-white/5 hover:text-white">
+                        <Link href={toSiteHref(item.href)} className="block rounded-xl border border-transparent px-3 py-2 transition hover:border-white/10 hover:bg-white/5 hover:text-white">
                           {item.label}
                         </Link>
                       </li>

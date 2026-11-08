@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { Alert, Badge, Button, Card, Checkbox, Input, Select, Textarea } from '@stackvibe-studio/ui';
+import { toSiteHref } from '../../../lib/site';
 import { DocsShell } from '../../../components/docs-shell';
 
 const components = [
@@ -19,7 +20,7 @@ export default function DocsComponentsPage() {
     >
       <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {components.map((item) => (
-          <Link key={item.name} href={item.href} className="block">
+          <Link key={item.name} href={toSiteHref(item.href)} className="block">
             <Card className="h-full bg-slate-900/80 p-5 transition hover:border-violet-400/40 hover:bg-slate-900">
               <div className="mb-4 flex items-center justify-between">
                 <span className="text-xs uppercase tracking-[0.24em] text-violet-200">{item.tag}</span>
@@ -40,7 +41,7 @@ export default function DocsComponentsPage() {
             <p className="text-sm uppercase tracking-[0.25em] text-cyan-300">Live preview</p>
             <h2 className="mt-2 text-3xl font-semibold text-white">Common product patterns</h2>
           </div>
-          <Button as="a" href="/docs/components/button" variant="secondary">See button docs</Button>
+          <Button as="a" href={toSiteHref('/docs/components/button')} variant="secondary">See button docs</Button>
         </div>
 
         <div className="grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
